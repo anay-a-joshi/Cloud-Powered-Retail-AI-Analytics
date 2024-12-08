@@ -5,5 +5,5 @@ pandas
 matplotlib
 numpy
 seaborn
-sklearn
+scikit-learn
 networkx
