@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #FFD700; /* Neon Gold */
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.8);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #f0f0f0;
+        }
+
+        /* Button Container */
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Buttons */
+        .button {
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Logout Link */
+        .logout {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .logout a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logout a:hover {
+            color: #FF4500;
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .menu-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Welcome, {{ session.firstname }} {{ session.lastname }}!</h1>
+        <p>Your e-mail is <strong>{{ session.email }}</strong>, and your user-id is <strong>{{ session.username }}</strong>.</p>
+        <p>Please select an option to continue:</p>
+
+        <!-- Buttons for Navigation -->
+        <div class="button-container">
+            <a href="{{ url_for('dashboard') }}"><button class="button">Explore Insights Dashboard</button></a>
+            <a href="{{ url_for('search') }}"><button class="button">Search Data</button></a>
+            <a href="{{ url_for('upload') }}"><button class="button">Upload New Data</button></a>
+        </div>
+
+        <!-- Logout Link -->
+        <div class="logout">
+            <p><a href="{{ url_for('logout') }}">LOG OUT</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #FFD700; /* Neon Gold */
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.8);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-bottom: 40px;
+        }
+
+        /* Button Styles */
+        .button {
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Welcome Note Box */
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid #FF4500; /* Neon Orange */
+            border-radius: 5px;
+            padding: 20px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            margin-top: 20px;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+
+        .welcome-box h3 {
+            color: #FF4500; /* Neon Orange */
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(255, 69, 0, 0.8);
+        }
+
+        .welcome-box p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to The Dashboard</h1>
+    <p>Your one-stop solution for insightful analytics and user-friendly interfaces. What would you like to do next?</p>
+    <div>
+        <a href="{{ url_for('login') }}"><button class="button">Login</button></a>
+        <a href="{{ url_for('register') }}"><button class="button">Register</button></a>
+    </div>
+
+    <br>
+    <br>
+    
+    <!-- Welcome Note Section -->
+    <div class="welcome-box">
+        <p>
+            Dive into a tailored analytics platform built to simplify data exploration and decision-making in retail. 
+            Designed with scalability and user experience in mind, this project combines the power of cloud technologies 
+            with advanced data engineering to deliver actionable insights that matter.
+        </p>
+    </div>
+</body>
+</html>

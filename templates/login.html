@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2, h3 {
+            font-size: 2.5rem;
+            color: #FFD700; /* Neon Gold */
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.8);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .alert {
+            background: rgba(255, 0, 0, 0.1);
+            color: #FF4500;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #FF4500;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+            margin: auto;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #FFD700; /* Neon Gold */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #FF4500;
+            text-decoration: underline;
+        }
+
+        .welcome-message {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .overview {
+            margin-bottom: 30px;
+        }
+
+        .overview h3 {
+            color: #00FFFF;
+            font-size: 2rem;
+            text-shadow: 1px 1px 5px rgba(0, 255, 255, 0.8);
+        }
+
+        .overview p {
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Alert for Failed Login -->
+    {% if login_failed %}
+        <div class="alert">
+            Login failed. Please check your credentials and try again.
+        </div>
+    {% endif %}
+
+    <!-- Project Overview Section -->
+    <div class="overview container">
+        <h3>Project Overview</h3>
+        <p>
+            This project leverages cloud computing and data engineering to analyze retail data for actionable insights.
+            By integrating Azure Cloud Technologies and data science, it offers scalable solutions to improve customer
+            engagement and spending behavior analysis.
+        </p>
+    </div>
+
+    <!-- Welcome Messages -->
+    <div class="welcome-message">
+        <h2>Welcome to the Login Page!</h2>
+        <p>If you're returning, simply log in using your credentials. New here? No problem! 
+        <br>Click on "Register" below to create a new account and explore our application.</p>
+    </div>
+
+    <!-- Login Form -->
+    <form method="post" action="/login">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <!-- Registration Link -->
+    <p>Don't have an account? <a href="/register">Register here</a></p>
+</body>
+</html>

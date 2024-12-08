@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #FFD700; /* Neon Gold */
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.8);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #f0f0f0;
+        }
+
+        a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #FF4500;
+            text-decoration: underline;
+        }
+
+        /* Form Styles */
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #FFD700;
+        }
+
+        input[type="number"] {
+            width: 200px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+            color: #FFD700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        td {
+            color: #ffffff;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        /* Note Box */
+        .note-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-left: 5px solid #32CD32; /* Neon Green */
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .note-container h3 {
+            font-size: 1.8rem;
+            color: #32CD32; /* Neon Green */
+            margin-bottom: 10px;
+        }
+
+        .note-container p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FFD700; /* Neon Gold */
+        }
+    </style>
+</head>
+<body>
+    <!-- Return to Main Menu -->
+    <div class="section">
+        <a href="{{ url_for('menu') }}" class="button">Return to the Main Menu</a>
+    </div>
+
+    <h2>Search for Data</h2>
+
+    <!-- Note Section -->
+    <div class="note-container">
+        <h3>Note</h3>
+        <p>
+            This feature enables users to dynamically pull data for a specific <code>HSHD_NUM</code> from the 
+            Transactions, Households, and Products datasets, seamlessly integrated and sorted by <code>HSHD_NUM</code>, 
+            <code>BASKET_NUM</code>, <code>PURCHASE_DATE</code>, <code>PRODUCT_NUM</code>, <code>DEPARTMENT</code>, and
+            <code>COMMODITY</code> to ensure comprehensive and accurate results.
+
+            The Transactions dataset includes information about each transaction such as the basket number, product number, 
+            and purchase details. The Households dataset provides demographic and household-related information, and the Products 
+            dataset contains product-specific data like the department, commodity, and whether the product is organic or branded.
+
+            Sorting is prioritized by <code>HSHD_NUM</code> to maintain data consistency and avoid mismatches across rows where not 
+            all fields may align perfectly, ensuring the requirements are met without compromising the integrity of the dataset.
+        </p>
+    </div>
+
+    <br>
+
+    <p>Use the search form below to find detailed information for a specific household. Enter the household number to sort/view transactions, demographics, and spending data.</p>
+
+    <br>
+
+    <!-- Search Form -->
+    <form method="post" action="/search">
+        <label for="hshd_num_input">Household Number:</label><br>
+        <input type="number" min="0" id="hshd_num_input" name="hshd_num_input" placeholder="Enter the household number!" required><br>
+        <input type="submit" value="Search">
+    </form>
+
+    <br>
+
+    {% if not error %}
+    <div id="results" style="margin-top: 10px">
+        <table>
+            <tr>
+                <th>Household Number</th>
+                <th>Basket Number</th>
+                <th>Date</th>
+                <th>Product Number</th>
+                <th>Department</th>
+                <th>Commodity</th>
+                <th>Spend</th>
+                <th>Units</th>
+                <th>Store Region</th>
+                <th>Week Number</th>
+                <th>Year</th>
+                <th>Loyalty Flag</th>
+                <th>Age Range</th>
+                <th>Marital Status</th>
+                <th>Income Range</th>
+                <th>Homeowner Description</th>
+                <th>Household Composition</th>
+                <th>Household Size</th>
+                <th>Children</th>
+            </tr>
+    {% endif %}
+            {{ table_content | safe }}
+    {% if not error %}
+        </table>
+    </div>
+    {% endif %}
+</body>
+</html>

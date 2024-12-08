@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #FFD700; /* Neon Gold */
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.8);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form Container */
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #FFD700; /* Neon Gold */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        p {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #f0f0f0;
+        }
+
+        p a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        p a:hover {
+            color: #FF4500;
+            text-decoration: underline;
+        }
+
+        .form-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <form method="post" action="/register">
+            <label for="username">User-ID:</label><br>
+            <input type="text" id="username" name="username" placeholder="Enter your username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+            <label for="firstname">First Name (or Preferred Name):</label><br>
+            <input type="text" id="firstname" name="firstname" placeholder="Enter your preferred name"><br>
+            <label for="lastname">Last Name:</label><br>
+            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name"><br>
+            <label for="email">E-Mail:</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter your e-mail"><br><br>
+            <input type="submit" value="Register">
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+</body>
+</html>

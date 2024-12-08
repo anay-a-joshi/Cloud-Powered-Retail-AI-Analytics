@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #FFD700; /* Neon Gold */
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.8);
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            text-align: left;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #FFD700; /* Neon Gold */
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select,
+        input[type="file"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            box-sizing: border-box; /* Ensures input fits within the container */
+        }
+
+        input[type="file"] {
+            background-color: #ffffff;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(90deg, #FFD700, #FF4500);
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .status-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .status-success {
+            background-color: rgba(50, 205, 50, 0.1); /* Light Green */
+            border: 1px solid #32CD32; /* Green Border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-fail {
+            background-color: rgba(255, 69, 0, 0.1); /* Light Red */
+            border: 1px solid #FF4500; /* Red Border */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        a {
+            color: #FFD700; /* Neon Gold */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #FF4500;
+            text-decoration: underline;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload Data</h2>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <label for="data_type">What type of data will you be uploading in a CSV file?</label>
+        <select id="data_type" name="data_type">
+            <option value="0" selected>Transactions</option>
+            <option value="1">Households</option>
+            <option value="2">Products</option>
+        </select>
+        <label for="file_upload">Select a file:</label>
+        <input type="file" id="file_upload" name="file_upload" accept=".csv" required />
+        <input type="submit" value="Upload">
+    </form>
+
+    <!-- Status Messages -->
+    {% if success == "true" %}
+    <div class="status-message status-success">
+        Successfully uploaded file!
+    </div>
+    {% endif %}
+    {% if success == "false" %}
+    <div class="status-message status-fail">
+        There was a problem uploading your file.
+    </div>
+    {% endif %}
+
+    <p>Return to the <a href="{{ url_for('menu') }}">Main Menu</a>.</p>
+</body>
+</html>
